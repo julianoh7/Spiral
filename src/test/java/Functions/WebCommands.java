@@ -1,6 +1,7 @@
 package Functions;
 
 import DriverWrapper.Web;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -57,45 +58,7 @@ public class WebCommands {
         JavascriptExecutor js = (JavascriptExecutor)web.getDriver().switchTo().window(lol);
         js.executeScript("scrollBy(0,300)");
     }
-    public void scrollDownByPixels() {
-        JavascriptExecutor js = (JavascriptExecutor) web.getDriver();
-        js.executeScript("scrollBy(0,500)");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        js.executeScript("scrollBy(0,700)");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        js.executeScript("scrollBy(0,1000)");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        js.executeScript("scrollBy(0,2000)");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        js.executeScript("scrollBy(0,3000)");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        js.executeScript("scrollBy(0,3000)");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+
     public void scrollToView(By element){
         try {
             Thread.sleep(2000);
@@ -115,13 +78,6 @@ public class WebCommands {
         return getWebElement(locator).getText();
     }
 
-    public void adultCount1 (By element ,String count){
-        WebElement adults= getWebElement(element);
-        adults.click(); //Click the dropdown
-        Select adultAmount = new Select(adults);
-        adultAmount.selectByVisibleText(count);
-
-    }
     public void calendar (By element ,String count) {
         List<WebElement> dates = web.getDriver().findElements(element);
         for (WebElement date : dates) {
@@ -155,16 +111,6 @@ public class WebCommands {
         WebElement element = getWebElement(locator);
         Select dropDown = new Select(element);
         dropDown.selectByVisibleText(text);
-    }
-    public void getWebElementsAndClickUsingActionsClass (By element ,String count) {
-        List<WebElement> dates = web.getDriver().findElements(element);
-        Actions actions = new Actions(web.getDriver());
-        switchingWindowHandle("https://www.directword.io/survey/domain=www.hotels.com/locale=en_US?metadata=%7B%22url%22%3A%22https%3A%2F%2Fwww.hotels.com%2F%22%2C%22pagename%22%3A%22home%20page%22%2C%22appname%22%3A%22kes%22%2C%22appversion%22%3A%221.1.2244%22%7D");
-        for (WebElement date : dates) {
-            if (date.getText().equalsIgnoreCase(count)) {
-                actions.click(date).build().perform();
-            }
-        }
     }
     public void navigateBack (){
         web.getDriver().navigate().back();
